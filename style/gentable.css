@@ -1,0 +1,2303 @@
+#portal_warning 
+{
+	color: #ff0000;
+	padding: 10px;
+	border: 1px solid #dddddd;
+	background-color: #eeeeee;
+	font-size: 120%;
+}
+
+#portlet_page .module_content ul 
+{
+	list-style-type: none;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	
+}
+
+#portlet_page .module_content ul li 
+{
+	padding: 0px 0px 0px 7px;
+	background: url(/common/bullet.gif) no-repeat 0px 8px;
+}
+
+thead {display: table-header-group;}
+
+.a
+{
+	cursor: pointer;
+}
+
+/*
+#####################################################
+# GENERIC TABLE FORMAT								#
+#####################################################
+*/
+.gendiv {
+	background-color: #ffffff; 
+	border: 1px solid #cccccc; 
+	padding: 1px 10px 2px 4px;
+}
+
+.gentable
+{
+	background-color: #CCCCCC;
+	line-height: 13.0pt;
+	border-spacing: 1px;
+	margin: 0px 0px 15px 0px;
+}
+
+.gentable th {
+	background-color: #F0F0F0;
+	border: 1px solid #FFFFFF;
+	padding: 0px 4px 2px 4px;
+	text-align: left;
+	vertical-align: top;
+}
+
+.gentable.zebra tbody tr:nth-child(even) td:not(.green):not(.red):not(.yellow):not(.blue):not(.orange):not(.pink):not(.purple),
+.gentable.zebra tbody tr:nth-child(even) th[scope=row] {
+	background-color: #f8f8f8;
+}
+
+.gentable.zebra tbody tr:nth-child(odd) td:not(.green):not(.red):not(.yellow):not(.blue):not(.orange):not(.pink):not(.purple),
+.gentable.zebra tbody tr:nth-child(odd) th[scope=row] {
+	background-color: #fff;
+}
+
+.gentable.lightrow tbody tr:hover td,
+.gentable.lightrow tbody tr:hover th[scope=row] {
+	background-color: #ffc;
+}
+
+.gentable .left {
+	text-align: left;
+}
+
+.gentable .right {
+	text-align: right;
+}
+
+.gentable .center {
+	text-align: center;
+}
+
+.gentable td, .gentable th[scope=row] {
+	background-color: #FFFFFF;
+	padding: 1px 4px 2px 4px;
+	vertical-align: top;
+}
+
+.gentable tr.header th {
+	background-color: #DDDDDD;
+	padding: 0px 4px 2px 4px;
+}
+
+.gentable tr.header th a {
+	padding: 0px 6px 2px 6px;
+}
+
+.gentable tr.odd-entry td {
+	background-color: #FFFFFF;
+	text-align: center;
+}
+
+.gentable tr.even-entry td {
+	background-color: #F0F0F0;
+	text-align: center;
+}
+
+.gentable tr.footer th {
+	background-color: #C7DFFE;
+	border: 1px solid #FFFFFF;
+}
+
+.gentable tr.footer td {
+	background-color: #C7DFFE;
+	border: 1px solid #FFFFFF;
+	font-weight: bold;
+}
+
+.gentable .tson {
+	background-color: #66ff66;
+	cursor: pointer;
+}
+
+.gentable .tsoff {
+	background-color: #ffffff;
+}
+
+.gentable .tsgroup {
+	background-color: #52cdf2;
+	cursor: pointer;
+}
+
+.gentable .green {
+	background-color: #00aa00;
+	color: #ffffff;
+}
+
+.gentable tr.green td {
+	background-color: #00aa00;
+	color: #ffffff;
+}
+
+.gentable .green .a, .gentable .green a {
+	color: #ffffff;
+}
+
+/* BJK: added specific def for VSL app, otherwise trumped by zebra striping */
+.gentable .red, table.gentable tr.errmsg td.red {
+	background-color: #aa0000;
+	color: #ffffff;
+}
+
+.gentable .red .a, .gentable .red a {
+	color: #ffffff;
+}
+
+.gentable .ltblue {
+	background-color: #F4FCFF;
+}
+
+
+.gentable .blue {
+	background-color: #0000aa;
+	color: #ffffff;
+}
+
+.gentable .blue .a, .gentable .blue a {
+	color: #ffffff;
+}
+
+.gentable .yellow {
+	background-color: #FFCC00;
+	color: #000000;
+}
+
+.gentable .yellow .a, .gentable .yellow a {
+	color: #000000;
+}
+
+.gentable .orange {
+	background-color: #FF6600;
+	color: #ffffff;
+}
+
+.gentable .orange .a, .gentable .orange a {
+	color: #ffffff;
+}
+
+.gentable .pink {
+	background-color: #ff7777;
+	color: #ffffff;
+}
+
+.gentable .pink .a, .gentable .pink a {
+	color: #ffffff;
+}
+
+.gentable .purple {
+	background-color: #9933CC;
+	color: #ffffff;
+}
+
+.gentable .purple .a, .gentable .purple a {
+	color: #ffffff;
+}
+
+.gentable .editcell {
+	background-color: #F5F4BF;
+}
+
+.gentable tr.editcell td {
+	background-color: #F5F4BF;
+}
+
+.gentable .grey {
+	background-color: #aaaaaa;
+	color: #ffffff;
+}
+
+.gentable .grey .a, .gentable .grey a {
+	color: #ffffff;
+}
+
+.gentable .black {
+	background-color: #000000;
+	color: #ffffff;
+}
+.gentable .black .a, .gentable .black a {
+	color: #ffffff;
+}
+
+.gentable .active {
+	background: #00FF00;
+}
+	
+.gentable .inactive {
+	background: #FFFF00;
+}
+	
+.gentable .disabled {
+	background: #e0e0e0;
+	color: #999999;
+}
+	
+.gentable .problem {
+	background: #FF0000;
+}
+
+.gentable .greenfg {
+	color: #00aa00;
+}
+
+.gentable .greenfg .a, .gentable .greenfg a {
+	color: #00aa00;
+}
+
+.gentable .redfg {
+	color: #aa0000;
+}
+
+.gentable .redfg .a, .gentable .redfg a {
+	color: #aa0000;
+}
+
+.gentable .orangefg {
+	color: #FF6600;
+}
+.gentable .orangefg .a, .gentable .orangefg a {
+	color: #FF6600;
+}
+
+.gentable .bluefg {
+	color: #0000aa;
+}
+
+.gentable .bluefg .a, .gentable .bluefg a {
+	color: #0000aa;
+}
+
+
+.gentable .yellowfg {
+	color: #dddd77;
+}
+
+.gentable .yellowfg .a, .gentable .yellowfg a {
+	color: #dddd77;
+}
+
+.gentable .greyfg {
+	color: #aaaaaa;
+}
+
+.gentable .greyfg .a, .gentable .greyfg a  {
+	color: #aaaaaa;
+}
+
+.gentable .pinkfg {
+	color: #ff7777;
+}
+
+.gentable .pinkfg .a, .gentable .pinkfg a  {
+	color: #ff7777;
+}
+
+.gentable .purplefg {
+	color: #9933CC;
+}
+
+.gentable .purplefg .a, .gentable .purplefg a  {
+	color: #9933CC;
+}
+
+.gentable td.calcell 
+{
+	height: 100px;
+}
+
+.gentable th.calcell
+{
+	width: 18px;
+	height: 100px;
+	padding: 0px 0px 0px 0px;
+}
+
+.gentable th.calcell a 
+{
+	width: 18px;
+	height: 20px;
+	display: block;
+	padding: 40px 0px 40px 0px;
+}
+
+.gentable th.calcell:hover 
+{
+	background-color: #DDDDDD;
+}
+
+.gentable td.calcell div
+{
+	height: 78px;
+	width: 100%;
+	overflow: auto;
+}
+
+h5 div  /* KB - Added to allow toggle links to be clickable in Safari 9 */
+{
+	position: relative; 
+	z-index: 1;
+}
+
+/****************** THE FOLLOWING STYLES WERE ADDED BY DAVID KEES OF THE MECHSE DEPARTMENT TO FACILITATE SOME 
+ ****************** ADDITIONAL FUNCTIONALITY TO TABLES. */
+.colorize.gentable 
+{
+	border-spacing: 0px;
+	border: none;
+}
+
+.colorize.gentable th, .colorize.gentable td 
+{
+	padding: 5px;
+	border: none;
+}
+
+.colorize.gentable tr.t { border-top-style:    none; }		
+.colorize.gentable tr.l { border-left-style:   none; }   
+.colorize.gentable tr.b { border-bottom-style: none; }
+.colorize.gentable tr.r { border-right-style:  none; }
+
+.colorize.gentable tr.t th, .colorize.gentable tr.t td, .colorize.gentable th.t, .colorize.gentable td.t, .colorize.gentable.t { border-top:    1px solid #cccccc ; }	
+.colorize.gentable tr.l th, .colorize.gentable tr.l td, .colorize.gentable th.l, .colorize.gentable td.l, .colorize.gentable.l { border-left:   1px solid #cccccc ; }
+.colorize.gentable tr.b th, .colorize.gentable tr.b td, .colorize.gentable th.b, .colorize.gentable td.b, .colorize.gentable.b { border-bottom: 1px solid #cccccc ; }
+.colorize.gentable tr.r th, .colorize.gentable tr.r td, .colorize.gentable th.r, .colorize.gentable td.r, .colorize.gentable.r { border-right:  1px solid #cccccc ; }
+
+.colorize.gentable td.middle, .colorize.gentable th.middle { vertical-align: middle !important; }
+.colorize.gentable td.bottom, .colorize.gentable th.bottom { vertical-align: bottom !important; }
+
+
+
+.tabs 
+{
+	display: block;
+	height: 30px;
+	border-bottom: solid 5px #aaaaaa;
+	padding: 0px;
+	margin: 0px 0px 5px 0px;
+}
+
+.tabs ul
+{
+	list-style-type: none;	
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+.tabs li, .module_content .tabs li, #portlet_page .module_content .tabs li
+{
+	float: left;
+	background: #cccccc none;
+	margin: 5px 5px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	border-left: solid 1px #aaaaaa;
+	border-top: solid 1px #aaaaaa;
+	border-right: solid 1px #aaaaaa;  
+	border-bottom: solid 2px #aaaaaa; 
+}
+
+.tabs ul .on
+{
+	background-color: #aaaaaa;
+}
+
+.tabs ul .disabled
+{
+	background-color: #EFEFEF;
+	
+}
+.tabs ul li a 
+{
+	display: block;
+	height: 15px;
+	padding: 5px 15px 4px 15px;
+	cursor: pointer;
+
+}	
+
+/* AS AN ALTERNATE TO THE TAB STYLES ABOVE< THESE WORK SPECIFICALLY WITH THE DASHTABS JAVASCRIPT SET UP
+ * WHICH CAN BE FOUND IN /common/dashboard/dashtabs.js.  THIS SCRIPT WAS PRODUCED BY DAVID KEES.  (ddkees) */
+
+ul.dashtabs {
+	bottom: 1px;
+	list-style-type: none;
+	margin: 10px 0 0 !important;
+	position: relative;
+}
+
+ul.dashtabs li.dashtab {
+	background: #999;
+	border: 1px solid #454545;
+	color: #666;
+	cursor: pointer;
+	display: inline;
+	margin-left: 5px;
+	padding: 2px 5px;
+	position: relative;
+	z-index: 1;									/* puts tabs that are off behind the pane */
+}
+
+ul.dashtabs li.dashtab.on {
+	background: #FFF;
+	border-bottom-color: #FFF;
+	color: #000;
+	cursor: default;
+	z-index: 3;									/* puts tabs that are on in front of the pane */
+}
+
+ul.dashtabs li.dashtab a {
+	color: #FFF;
+	text-decoration: none;
+}
+
+ul.dashtabs li.dashtab a:hover,
+ul.dashtabs li.dashtab a:focus {
+	color: #FFF !important;
+	text-decoration: underline;
+}
+
+ul.dashtabs li.dashtab a:active,
+ul.dashtabs li.dashtab.on a {
+	color: #000 !important;
+	cursor: default;
+}
+
+ul.dashtabs + div.pane {
+	background: #FFF;
+	border: 1px solid #454545;
+	padding: 10px;
+	position: relative;
+	z-index: 2;									/* puts pane in between on and off tabs */
+}
+
+div.pane table {
+	margin-bottom: 0px;
+}
+
+/*---------- application menu -----------*/
+.menu 
+{
+	background-color: #f8f8f8;
+	display: inline-block;
+	width: 100%;
+	padding: 0px 0px 1px 0px;
+	margin: 0px 0px 5px 0px;
+}
+
+.menu ul
+{
+	list-style-type: none;	
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+.menu li 
+{
+	float: left;
+	background: #f0f0f0 none;
+	margin: 0px 5px 5px 0px;
+	border: solid 1px #c0c0c0;
+}
+
+.menu ul li.on 
+{
+	background-color: #d0d0d0;
+}
+
+.menu ul li a 
+{
+	display: block;
+	padding: 1px 5px 1px 5px;
+}	
+
+
+
+/*---------- button fomatting for dirupdate via ajax use -----------*/
+
+input[TYPE=button].ajaxboldbtn{
+	padding:0px;
+	color:#333399;
+	font-size:.95em;
+	background-color:transparent;
+	font-family:Arial,helvetica,sans-serif;
+	border:0px;
+	font-weight:bold;
+	cursor: pointer;
+}
+
+input[TYPE=button].ajaxbtn{
+	padding:0px;
+	color:#333399;
+	font-size:.95em;
+	background-color:transparent;
+	font-family:Arial,helvetica,sans-serif;
+	border:0px;
+	cursor: pointer;
+}
+
+
+/*---------- bubble tooltip -----------*/
+a.tt{
+    position:relative;
+    z-index:24;
+    color:#3CA3FF;
+	font-weight:bold;
+    text-decoration:none;
+	cursor:pointer;
+}
+a.tt span{display: none; text-decoration:none;}
+
+/*background:; ie hack, something must be changed in a for ie to execute it*/
+a.tt:hover{z-index:25; background:; text-decoration:none;}
+a.tt:hover span.tooltip{
+    display:inline;
+    position:absolute;
+    top:0px; left:-160px;
+	padding-right: 5px;
+	width:200px;
+    text-align: left;
+	filter: alpha(opacity:90);
+	KHTMLOpacity: 0.90;
+	MozOpacity: 0.90;
+	opacity: 0.90;
+}
+a.tt:hover span.top{
+	display: block;
+	padding: 30px 8px 0px 0px;
+    background: url(/common/images/bubble.gif) no-repeat top;
+}
+a.tt:hover span.middle{ /* different middle bg for stretch */
+	display: block;
+	padding: 0px 8px;
+	color:#000000; 
+	background: url(/common/images/bubble_filler.gif) repeat bottom; 
+}
+a.tt:hover span.bottom{
+	display: block;
+	padding:3px 8px 10px 0px;
+    background: url(/common/images/bubble.gif) no-repeat bottom;
+}
+
+a.ttfright
+{
+    color:#181bb0;
+}
+
+a.ttfright:hover span.tooltip
+{
+    top:0px; left:5px;
+}
+
+a.ttfright:hover span.top{
+    background: url(/common/images/bubble-fright.gif) no-repeat top;
+}
+
+#authz-bg {
+	z-index: 10000; 
+	filter: alpha(opacity=75); 
+	-moz-opacity:.75; 
+	opacity:.75; 
+	position: fixed; 
+	left: 0px; 
+	top: 0px; 
+	height: 100%; 
+	width: 100%; 
+	background-color: #333333;
+}
+
+#authz-fg {
+	z-index: 10001; 
+	position: fixed; 
+	left: 15%; 
+	top: 15%; 
+	height: 70%; 
+	width: 70%; 
+	overflow: auto;
+	padding: 1em; 
+	background-color: #ffffff; 
+	border: 1px black solid;
+}
+
+
+#authz-fg-wide {
+	z-index: 10001; 
+	position: fixed; 
+	left: 5%;
+	top: 150px; 
+	width: 90%;
+	padding: 1em; 
+	background-color: #ffffff; 
+	border: 1px black solid;
+}
+
+#authz-fg-max {
+	z-index: 10001; 
+	position: fixed; 
+	left: 5%;
+	top: 5%; 
+	width: 90%;
+	height: 90%;
+	overflow: auto;
+	padding: 1em; 
+	background-color: #ffffff; 
+	border: 1px black solid;
+}
+
+#authz-fg-max-bigger {
+	z-index: 10001; 
+	position: fixed; 
+	left: 1%;
+	top: 1%;
+	width: 95%;
+	height: 95%;
+	overflow: auto;
+	padding: 1em; 
+	background-color: #ffffff; 
+	border: 1px black solid;
+}
+
+#authz-fg-confirm {
+	z-index: 10001; 
+	position: fixed; 
+	left: 40%; 
+	top: 40%; 
+	height: 200px; 
+	width: 300px; 
+	overflow: auto;
+	padding: 1em; 
+	background-color: #ffffff; 
+	border: 1px black solid;
+}
+
+.authz-actions {
+	position:fixed; 
+	right:15%; 
+	top:16%; 
+	padding:5px 10px; 
+	background-color:#EEE; 
+	border:1px solid #D0D0D0; 
+	opacity:0.8;
+}
+
+.portal_debug {
+	margin: 0px;
+	color: red;
+	z-index: 1000000;
+	position: relative;
+	width: 400px;
+	background: rgba(255, 255, 255, 0.8);
+}
+
+.weather-temp {
+	font-weight: bold;
+	font-size: 150%;
+}
+
+.weather-time {
+	font-size: 110%;
+}
+
+/*
+#####################################################
+# GENERIC FORM FORMAT								#
+#####################################################
+*/
+
+.loginform {
+	width: 196px;
+}
+
+.loginform dl {
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	position: relative;
+}
+
+.loginform dt {
+	clear: both;
+	float:left;
+	width: 83px;
+	padding: 5px 0px 0px 0px;
+	text-align: right;
+}
+
+.loginform dd {
+	float: left;
+	margin: 0px 0px 0px 0px;
+	padding: 1px 0px 0px 1px;
+}
+
+/* THESE FORM STYLES ARE IN USE IN MOST OF THE APPLICATIONS PRODUCED BY THE MECHSE DEPARTMENT AND BY DAVID KEES
+ * SPECIFICALLY.  THEY'RE GENERAL FORM STYLES AND CAN BE USED BY ANYONE WHO NEEDS THEM.   (ddkees)
+ */
+
+fieldset {
+	background-color: #f0f0f0;
+	border: 1px solid #cccccc;
+	margin: 0px 0px 20px 0px;
+	padding: 15px 15px 15px 15px;
+	position: relative; 
+}
+
+fieldset legend label
+{
+	font-size: 125%;
+	padding: 0 8px;
+}
+
+fieldset li p {
+	margin-left: 1px;
+}
+
+fieldset ol {
+	float: left;
+	list-style-type: none;
+	margin: 0 0 0 .75em;
+	padding: .75em 0 .5em 0;
+	width: 98%;							/* 98% accounts for the padding when we create .full fields */
+}
+
+fieldset ol + ol {
+	padding-top: 0;
+}
+
+fieldset ol li {
+	display: block;
+	float: left;
+	margin-bottom: 20px;
+	width: 100%;
+}
+
+fieldset ol li a.help img {
+	position: relative;
+	top: 4px;
+}
+
+fieldset label {
+	display: block;
+	font-weight: bold;
+	margin: 1px;
+	position: relative;
+}
+
+fieldset ol.horizontal li label {
+	float: left;
+	width: 10em;
+}
+
+fieldset ol.full.horizontal li label {
+	width: auto;
+}
+
+fieldset label img {
+	border-style: none;
+	margin-left: 5px;
+}
+
+fieldset label strong {
+	display: block;
+	font-weight: normal;
+}
+
+fieldset ol.label_rows label {
+	float: left;
+	margin-right: 1em;
+	position: relative;
+	top: 2px;				/* lines label text up with text in the element to its right */
+	width: 10em;
+}
+
+.css_hide {
+	left: -9999px;
+	position: absolute;
+}
+
+fieldset label.err {
+	color: #900;
+}
+
+fieldset fieldset {
+	border-style: none;
+	margin: 0;
+	padding: 0;
+	position: relative;
+}
+
+fieldset fieldset legend {
+	height: auto;
+	white-space: normal;
+}
+
+fieldset fieldset legend label {
+	font-size: 100%;
+	padding: 0;
+}
+
+fieldset fieldset legend label.error {
+	height: auto;															/* adds room for error message */
+}
+
+fieldset fieldset legend label.error strong {
+	padding: 0px;
+	white-space: pre-line;
+}
+
+fieldset fieldset p {
+	margin-bottom: 15px;
+	position: relative;
+	top: 9px;
+}
+
+fieldset fieldset ol {
+	margin-left: 0px;
+	padding: 0;
+	position: relative;
+}
+
+fieldset fieldset ol li {
+	margin-bottom: 3px;
+}
+
+fieldset fieldset ol li label {
+	display: inline;
+}
+
+fieldset fieldset ol li p {
+	top: 0px;
+}
+
+input.invalid {
+	background-color: #FFF0F0;
+	border: 2px solid #900;
+}
+
+
+/*
+#####################################################
+# PAGE STRUCTURE FORMATTING							#
+#####################################################
+*/
+
+.content-left {
+	float: left;
+	left: 0px;
+	width: 200px;
+	margin: 0px; 
+	padding: 10px 10px 0px 10px;
+}
+
+.content-center {
+	float: none;
+	margin: 0px 210px 0px 210px;
+	padding: 10px 10px 0px 10px;
+}
+
+.content-center-left {
+	margin: 0px 210px 0px 0px;
+	padding: 10px 10px 0px 10px;
+}
+
+.content-center-right {
+	margin: 0px 0px 0px 210px;
+	padding: 10px 10px 0px 10px;
+}
+
+.content-wide {
+	width: 100%;
+	margin: 0px 0px 0px 0px;
+	padding: 10px 0px 0px 0px;
+}
+
+.content-narrow {
+	width: 640px;
+	text-align: left;
+	margin: 10px auto 10px auto;
+}
+
+.content-right {
+	float: right;
+	width: 200px;
+	margin: 0px; 
+	padding: 10px 10px 0px 10px;
+}
+
+.clearing {
+	clear: both;
+}
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+.clearfix 
+{
+	width: 100%;
+	display: inline-block;
+}
+
+.fleft {
+	float: left;
+	margin: 0px 15px 15px 0px;
+	padding: 1px 1px 1px 1px;
+}
+
+.fleftzero {
+	float: left;
+	margin: 0px 0px 15px 0px;
+	padding: 1px 1px 1px 1px;
+}
+
+.finline {
+	float: none;
+	margin: 0px 0px 15px 0px;
+	padding: 1px 1px 1px 1px;
+}
+
+.fcenter {
+	float: none;
+	text-align: center;
+	padding: 1px 1px 1px 1px;
+}
+
+.fright {
+	float: right;
+	margin: 0px 0px 0px 15px;
+	padding: 1px 1px 0px 1px;
+}
+
+.zero 
+{
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+.js_show,					/* .js_show provides a way to identify elements that are hidden by default and shown by javascript */ 
+.hidden {
+	display: none;
+}
+
+.offscreen {
+	position: absolute;
+	top: -1000px;
+	left: -1000px;
+}
+
+.nowrap       { white-space: nowrap; }
+.align_left   { text-align: left   !important; }
+.align_right  { text-align: right  !important; }
+.align_center { text-align: center !important; }
+
+/*
+#####################################################
+# PHP LAND STRUCTURE FORMATTING	 (ddkees)			#
+#####################################################
+*/
+
+.phpland_body {			/* used for everything except the /parking folder to make room for a menu */
+	clear: both;
+	float: left;
+	overflow: hidden;
+	padding-bottom: 20px;
+	position: relative;
+	width: 100%;
+}
+
+.phpland_content_wrapper {
+	float: left;
+	position: relative;
+	right: 75%;
+	width: 100%;
+}
+
+.phpland_content {
+	float: left;
+	left: 92%;
+	overflow: hidden;
+	padding: 1em 0;
+	position: relative;
+	top: 7px;
+	width: 82%;
+}
+
+.phpland_menu_container {
+	float: left;
+	left: -7.25%;
+	overflow: visible;
+	margin: 14px 0 20px;
+	padding: 1em 0;
+	position: relative;
+	width: 15%;
+}
+
+
+/*
+#####################################################
+# GENERIC WIDTH AND HEIGHT STYLES 	(ddkees)		#
+#####################################################
+*/
+
+.full    { width: 100% !important; }
+.widest  { width:  97% !important; }
+.wider	 { width:  90% !important; }
+.wide    { width:  75% !important; }
+.two3rds { width:  66% !important; }
+.half    { width:  45% !important; }				/* 45% is used to allow two half columns to be floated around each other */
+.third   { width:  30% !important; }				/* 30% is used to allow three third columns to folad around each other */
+.thin    { width:  21% !important; }				/* 21% allows four thin columns floated around each other */
+.skinny  { width:  15% !important; }
+.petite  { width:  10% !important; }
+.tiny    { width:   5% !important; }
+.icon    { width: 16px !important; }				
+
+select.full { width: 97% !important; }				/* selects need a little room for their right-hand border */
+
+.xsmall  { height:  4em; }
+.small   { height:  8em; }
+.medium  { height: 12em; }
+.large   { height: 16em; }
+.xlarge  { height: 20em; }
+.xxlarge { height: 24em; }
+
+/*
+#####################################################
+# GENERIC PADDING AND MARGIN STYLES	 (ddkees)		#
+#####################################################
+*/
+
+.pad   { padding:		 20px !important; }
+.pad_t { padding-top:    20px !important; }
+.pad_l { padding-left:   20px !important; }
+.pad_r { padding-right:  20px !important; }
+.pad_b { padding-bottom: 20px !important; }
+
+.mar   { margin:         20px !important; }
+.mar_t { margin-top:     20px !important; }
+.mar_l { margin-left:    20px !important; }
+.mar_r { margin-right:   20px !important; }
+.mar_b { margin-bottom:  20px !important; }
+
+/*
+#####################################################
+# UNORDERED LIST TABLE FORMAT		  (ddkees)		#
+# These styles are good when you need to create a 	#
+# list of field value pairs and don't want or need	#
+# the full markup capabilities of an actual table.	#
+#####################################################
+*/
+
+ul.fake_table {
+	height: auto;
+	list-style-type: none;
+	margin: 0 0 20px 0;
+}
+
+ul.fake_table li {
+	padding-left: 7em;
+	margin-bottom: 0px;
+	position: relative;
+}
+
+ul.large.fake_table li {
+	padding-left: 10em;
+}
+
+ul.larger.fake_table li {
+	padding-left: 13em;
+}
+
+ul.largest.fake_table li {
+	padding-left: 16em;
+}
+
+ul.fake_table p {
+	margin-bottom: 5px;
+}
+
+ul.fake_table em {
+	display: block;
+	font-weight: bold;
+	left: 0px;
+	position: absolute;
+}
+
+/*  auto completer */
+div.autocomplete {
+	position: absolute;
+	width: 250px;
+	max-height: 400px;
+	overflow: auto;
+	background-color: #ffffff;
+	border: 1px solid #888888;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	z-index:100;
+}
+
+div.autocomplete ul {
+	list-style-type:none;
+	margin:0;
+	padding:0;
+}
+
+div.autocomplete ul li.selected 
+{
+	background-color: #EEE;
+}
+
+div.autocomplete ul li
+{
+	list-style-type: none;
+	background-image: none;
+	display: block;
+	margin: 0px 0px 0px 0px;
+	padding: 2px 2px 2px 2px;
+	cursor: pointer;
+}
+
+div.autocomplete ul li span.ac_name 
+{
+	font-weight: bold;
+}
+
+.photo
+{
+	background-color: #FFFFFF;
+	border: 1px solid #DDDDDD;
+	margin: 2px 12px 5px 12px;
+	padding: 5px 5px 5px 5px;
+}
+
+.photo img 
+{
+	margin: 0px 0px 5px 0px;
+}
+
+.success
+{
+	color: #00aa00;
+	font-size: 120%;
+}
+
+.failure 
+{
+	color: #ff0000;
+	font-size: 120%;
+}
+
+.specialnote
+{
+	display: block;
+	background-color: #F4FCFF;
+	border: 1px #e5e5e5 solid;
+	padding: 5px;
+	margin: 10px 0px;
+}
+
+
+
+.error 
+{
+	color: #ff0000;
+}
+
+.error a
+{
+	color: #ff0000;
+}
+
+.textalert
+{
+	color: #f58027;
+}
+
+th.noth {
+	background-color:#FFF;
+	text-align:left;
+	font-weight:normal;
+	font-size:1em;
+}
+
+.genform {
+	width: 500px;
+	display: inline-block;
+}
+
+.genform dl {
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	position: relative;
+}
+
+.genform dt {
+	clear: both;
+	float: left;
+	width: 120px;
+	padding: 3px 5px 10px 0px;
+	text-align: right;
+}
+
+.genform dd {
+	float: left;
+	margin: 0px 0px 0px 0px;
+	padding: 1px 0px 10px 1px;
+}
+
+.yellow_highlight {
+	background-color:#FFFF99;
+}
+
+.no_a{
+	text-decoration:none;
+	color:#000;
+	cursor:pointer;
+}
+
+.caption 
+{
+	color: #666666;
+	font-size: 0.8em;
+	text-align: left;
+}
+
+
+/* color grid */
+.colorcell { float: left; margin: 0px 3px 0px 0px; padding: 2px; text-align: center; }
+.colorcell.on { background-color: #d0d0d0; }
+.colortile a { display: block; width: 20px; height: 20px; border: 1px solid #000000; }
+.colortile a span { display: none; }
+
+
+
+/*************************************************************************/
+/* app specific css */
+
+
+/* advising signup calendar */
+body.app_advising #app_container 
+{
+	width: 960px; 
+	margin: 0px auto 0px auto;
+}
+
+body.app_advising #signupcal table.gentable td.ts 
+{
+	width: 135px;
+	text-align: left;
+	vertical-align: middle;
+	font-size: 8pt;
+	height: 22px;
+	padding: 0px 2px 0px 2px;
+}
+
+body.app_advising #signupcal table.gentable td.on 
+{
+	background-color: #66ff66;
+}
+
+body.app_advising #signupcal table.gentable td.off 
+{
+	background-color: #ffffff;
+}
+
+body.app_advising #signupcal .unconfirmed 
+{
+	font-style: italic;
+	color: #45a2dd;
+}
+
+body.app_advising #questionnaire 
+{
+	width: 700px;
+	max-height: 360px;
+	overflow: auto;
+	margin: 10px auto 10px auto;
+	padding: 0px 0px 10px 0px;
+}
+
+body.app_advising .photo 
+{
+	border: 1px solid #aaaaaa;
+	background-color: #eeeeee;
+	width: 120px;
+	height: 160px;
+	padding: 5px;
+	margin: 0px 10px 10px 10px;
+	position: relative;
+}
+
+body.app_advising .photo img 
+{
+	width: 120px;
+	height: 120px;
+}
+
+
+
+/* announcements */
+#app_announcements_container .column
+{
+	width: 350px;
+}
+
+#app_announcements_container .column table 
+{
+	width: 100%;
+}
+
+
+
+/* custom css for print versions: hide header and footer, modify clearfix so it doesn't completely break printing, remove borders, spacing, backgrounds on module_content container */
+@media print
+{
+	body, #page, .module_content { border: none !important; background: none !important; margin: 0px !important; padding: 0px  !important; }
+	#header { display: none !important; }
+	#footer { display: none !important; }
+	.clearfix { display: block !important; }
+	.donotprint { display: none; }
+}
+
+
+/* buy store front */
+body.app_buy #inventory 
+{
+	background-color: #ffffff;
+	width: 1000px;
+	margin: 10px auto 10px auto;
+	border: solid 1px #cccccc;
+}
+	 
+
+body.app_buy #inventory_heading 
+{
+	display: inline-block;
+	width: 100%;
+	background-color: #cccccc;
+}
+
+body.app_buy #inventory_heading .item_photo,
+body.app_buy #inventory_heading .item_name,
+body.app_buy #inventory_heading .item_description,
+body.app_buy #inventory_heading .item_sizes,
+body.app_buy #inventory_heading .item_colors,
+body.app_buy #inventory_heading .item_prices,
+body.app_buy #inventory_heading .item_action
+{
+	float: left;
+	font-weight: bold;
+	background-color: #f0f0f0;
+	border: 1px solid #ffffff;
+	padding: 2px 4px 2px 4px;
+	margin: 0px 1px 1px 0px;
+}
+
+body.app_buy #inventory_heading .item_photo 
+{
+	width: 100px;
+}
+
+body.app_buy #inventory_heading .item_name 
+{
+	display: none;
+}
+
+body.app_buy #inventory_heading .item_description
+{
+	width: 355px;
+}
+
+body.app_buy #inventory_heading .item_sizes 
+{
+	width: 100px;
+}
+
+body.app_buy #inventory_heading .item_colors 
+{
+	width: 200px;
+}
+
+body.app_buy #inventory_heading .item_prices
+{
+	width: 100px;
+}
+
+body.app_buy #inventory_heading .item_action
+{
+	width: 80px;
+	margin: 0px;
+}
+
+
+body.app_buy #inventory_items  
+{
+	display: inline-block;
+	width: 100%;
+	background-color: #cccccc;
+}
+
+body.app_buy .inventory_item 
+{
+	display: inline-block;
+	width: 100%;
+	background-color: #cccccc;
+}
+
+
+
+body.app_buy #inventory_items .item_photo,
+body.app_buy #inventory_items .item_namedesc,
+body.app_buy #inventory_items .item_sizes,
+body.app_buy #inventory_items .item_colors,
+body.app_buy #inventory_items .item_prices,
+body.app_buy #inventory_items .item_action
+{
+	float: left;
+	background-color: #ffffff;
+	border: 1px solid #ffffff;
+	padding: 2px 4px 2px 4px;
+	margin: 0px 1px 1px 0px;
+	height: 140px;
+}
+
+body.app_buy #inventory_items .item_photo 
+{
+	width: 100px;
+	overflow: hidden;
+}
+body.app_buy #inventory_items .item_photo img 
+{
+	width: 100%;
+}
+
+body.app_buy #inventory_items .item_namedesc 
+{
+	width: 355px;
+	overflow: auto;
+}
+
+body.app_buy #inventory_items .item_name 
+{
+	font-weight: bold;
+	margin: 0px 0px 7px 0px;
+} 
+
+
+body.app_buy #inventory_items .item_sizes 
+{
+	width: 100px;
+}
+
+body.app_buy #inventory_items .item_colors 
+{
+	width: 200px;
+}
+
+body.app_buy #inventory_items .item_prices
+{
+	width: 100px;
+}
+
+body.app_buy #inventory_items .item_action
+{
+	width: 80px;
+	margin: 0px;
+}
+
+body.app_buy #inventory_item_detail .inventory_item 
+{
+	background-color: transparent;
+	text-align: center;
+}
+
+body.app_buy #inventory_item_detail .inventory_item .item_photo 
+{
+	margin: 0px 0px 10px 0px;
+	max-height: 375px;
+	overflow: hidden;
+}
+
+body.app_buy #inventory_item_detail .inventory_item .item_photo img 
+{
+	width: 100%;
+}
+
+body.app_buy #inventory_item_detail .inventory_item .item_name 
+{
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+
+/* biodata */
+#app_biodata_container #instructions,
+#app_biodata_container #section_links 
+{
+	float: left;
+	margin: 0px 20px 20px 0px;
+	width: 380px;
+}
+
+
+#app_biodata_container dl 
+{
+	display: inline-block;
+}
+#app_biodata_container dl dt 
+{
+	float: left;
+	width: 60px;
+	text-align: right;
+	margin: 0px 15px 2px 0px;
+}
+
+#app_biodata_container dl dd
+{
+	float: left;
+	width: 300px;
+	margin: 0px 0px 2px 0px;
+}
+
+
+
+/* rosters */
+body.app_roster .photo 
+{
+	border: 1px solid #aaaaaa;
+	background-color: #eeeeee;
+	width: 130px;
+	height: 170px;
+	padding: 5px;
+	margin: 0px 10px 10px 10px;
+	position: relative;
+}
+
+body.app_roster .photo img 
+{
+	width: 100%;
+	margin: 0px;
+}
+
+body.app_roster div.prereq
+{
+	border: 1px solid #dd0000;
+	background-color: #ffeeee;
+}
+
+body.app_roster div.prereq_interview
+{
+	border: 1px solid #0000dd;
+	background-color: #eeeeff;
+}
+
+body.app_roster div.prereq_accept
+{
+	border: 1px solid #00dd00;
+	background-color: #eeffee;
+}
+
+body.app_roster div.prereq_drop
+{
+	border: 1px solid #dddddd;
+	background-color: #f8f8f8;
+	color: #cccccc;
+}
+
+body.app_roster td.prereq
+{
+	background-color: #ffeeee;
+}
+
+body.app_roster td.prereq_interview
+{
+	background-color: #eeeeff;
+}
+
+body.app_roster td.prereq_accept
+{
+	background-color: #eeffee;
+}
+
+body.app_roster td.prereq_drop
+{
+	background-color: #f0f0f0;
+	color: #aaaaaa;
+}
+
+body.app_roster .gendiv 
+{
+	margin-bottom: 20px;
+}
+
+body.app_roster .prereq_action_accept a
+{
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	background-image: url(/common/icons/fugue/tick-circle-frame.png);
+	width: 16px;
+	height: 16px;
+	display: block;
+}
+
+body.app_roster .prereq_action_accept a span
+{
+	display: none;
+}
+
+
+body.app_roster .prereq_action_accept_undo a
+{
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	background-image: url(/common/icons/silk/arrow_undo.png);
+	width: 16px;
+	height: 16px;
+	display: block;
+}
+
+body.app_roster .prereq_action_accept_undo a span
+{
+	display: none;
+}
+
+
+
+body.app_roster .prereq_action_interview a
+{
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	background-image: url(/common/icons/fugue/clipboard-search-result.png);
+	width: 16px;
+	height: 16px;
+	display: block;
+}
+
+body.app_roster .prereq_action_interview a span 
+{
+	display: none;
+}
+
+body.app_roster .prereq_action_drop a
+{
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	background-image: url(/common/icons/fugue/cross-circle-frame.png);
+	width: 16px;
+	height: 16px;
+	display: block;
+}
+
+body.app_roster .prereq_action_drop a span
+{
+	display: none;
+}
+
+body.app_roster #studentdetails 
+{
+	width: 525px;
+	height: 560px;
+}
+
+body.app_roster #studentdetails img 
+{
+	width: 525px;
+	height: 525px;
+}
+
+body.app_roster #studentdetails .fleft, body.app_roster #studentdetails .fright 
+{
+	margin: 0px;
+	padding: 0px;
+}
+
+
+/* ugpetitions */
+body.app_ugpetitions #app_content 
+{
+	width: 600px;
+	margin: 0px 10px 20px 10px;
+}
+body.app_ugpetitions #app_content div.item 
+{
+	display: inline-block;
+	background-color: #ffffff; 
+	border: 1px solid #cccccc; 
+	padding: 1px 10px 2px 4px;	
+	margin: 0px 0px 20px 0px;
+} 
+body.app_ugpetitions #app_content div.item .name,
+body.app_ugpetitions #app_content div.item .date ,
+body.app_ugpetitions #app_content div.item .petition_type, 
+body.app_ugpetitions #app_content div.item .petition_text,
+body.app_ugpetitions #app_content div.item .advisor_review, 
+body.app_ugpetitions #app_content div.item .dept_review, 
+body.app_ugpetitions #app_content div.item form
+{
+	margin: 0px 0px 10px 0px;
+	width: 100%;
+	float: left;
+} 
+body.app_ugpetitions #app_content div.item .name { width: 395px; }
+body.app_ugpetitions #app_content div.item .date { width: 170px; }
+
+
+
+
+
+
+/* blogs article display */
+
+body.blogs #article_container 
+{
+	position: relative;
+	width: 100%;
+	display: inline-block;
+}
+
+body.blogs #article 
+{
+	margin: 10px 10px 10px 10px;
+}
+
+body.blogs #article_container.leftsidebar #article
+{
+	margin-left: 270px;
+}
+
+body.blogs  #article_container.rightsidebar #article
+{
+	margin-right: 270px;
+}
+
+body.blogs #leftsidebar 
+{
+	float: left;
+	width: 240px;
+	margin: 10px 10px 10px 10px;
+}	
+
+body.blogs #rightsidebar 
+{
+	float: right;
+	width: 240px;
+	margin: 10px 10px 10px 10px;
+}	
+
+body.app_blogs #relatedtopic_container {
+	position: relative;
+}
+
+body.app_blogs #relatednetid_container {
+	position: relative;
+}
+
+/* classes */
+body.app_classes table.gentable ul,
+body.app_classes table.gentable li {
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+body.app_classes table.gentable table td.time {
+	width: 80px;
+}
+
+body.app_classes table.gentable table td.days {
+	width: 55px;
+}
+
+body.app_classes table.gentable table td.location {
+	width: 230px;
+}
+
+#classes-content table.gentable table {
+	width: 290px;
+}
+
+#classes-content table.gentable table td.time {
+	width: 55px;
+}
+
+#classes-content table.gentable table td.days {
+	width: 32px;
+}
+
+
+/* classtools */
+
+
+body.app_classtools #Module_clsadm .modulelist,
+#strWide #Module_clsadm .modulelist {
+	height: 190px;
+}
+
+
+
+
+/* vacation */
+
+.vacation_graph_cell
+{
+	height: 18px;
+	overflow: hidden;
+}
+
+
+/* eventreg */
+
+body.app_eventreg #edit_event_container {
+	width: 800px;
+}
+
+body.app_eventreg #event_list .gendiv {
+	width: 650px;
+	margin: 20px auto 20px auto;
+}
+
+
+/* diredit */
+
+body.app_diredit #app_filters .fleft { min-height: 90px; }
+body.app_diredit #person_info .column1 { width: 300px; }
+body.app_diredit img { width: 100%; }
+body.app_diredit #person_info .column2 { width: 420px; }
+body.app_diredit #person_info .column3 { width: 420px; }
+body.app_diredit #bio_and_photos .column1 { width: 500px; }
+body.app_diredit #bio_and_photos .column2 { width: 325px; }
+body.app_diredit #bio_and_photos .column3 { width: 325px; }
+body.app_diredit #additional_info { width: 100%; }
+
+
+
+/* appointments */
+
+body.appointments label {
+	font-weight: bold;
+}
+
+/* gradapps */
+
+body.app_gradapps .field_filter {
+	float: left;
+	margin: 0px 15px 20px 0px;
+	width: 270px;
+}
+
+	body.app_gradapps .field_filter table {
+		margin: 0px;
+		width: 100%;
+	}
+
+	body.app_gradapps .field_filter .fltr_table {
+		width: 100%;
+		height: 150px;
+		overflow: auto;
+		border-bottom: 1px #cccccc solid;
+	}
+/* gradrecs */
+
+body.app_gradrecs #student_info .column1 {
+	width: 250px;
+}
+
+body.app_gradrecs #student_info .column2 {
+	width: 300px;
+}
+
+body.app_gradrecs #student_info .column3 {
+	width: 250px;
+}
+
+body.app_gradrecs #student_info .column4 {
+	width: 350px;
+}
+
+
+
+/* plasma */
+
+body.app_plasma .module_content p {
+	margin: 0px 0px 2px 0px;
+}
+
+body.app_plasma .column1, body.app_plasma .column2 {
+	width: 585px;
+}
+
+body.app_plasma .module_content .slide .fleft {
+	margin: 0px 10px 3px 0px;
+}
+
+body.app_plasma .slide .preview.fleft {
+	border: 1px solid black;
+	margin: 0px 15px 0px 0px;
+}
+
+body.app_plasma .slide .preview div {
+	position: relative;
+	text-align: center;
+	width: 330px;
+	height: calc(330px * 9 / 16);
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+	body.app_plasma .slide .preview div.contain {
+		background-size: contain;
+	}
+
+	body.app_plasma .slide .preview div.cover {
+		background-size: cover;
+	}
+
+	body.app_plasma .slide .preview div.stretch {
+		background-size: 100% 100%;
+	}
+
+body.app_plasma .slide .fields {
+	width: 200px;
+}
+
+
+
+
+/* storeroom */
+body.app_storeroom * {
+	box-sizing: border-box;
+}
+
+body.app_storeroom #item_summary .column1 {
+	width: 350px;
+}
+
+body.app_storeroom #item_summary .column2 {
+	width: 250px;
+}
+
+body.app_storeroom #item_summary .column3 {
+	width: 280px;
+}
+
+body.app_storeroom #item_summary .column4 {
+	width: 250px;
+	margin-right: 0px;
+}
+
+body.app_storeroom #item_summary .column2 input[type=button] {
+	width: 100%;
+}
+
+body.app_storeroom #item_summary input {
+	margin: 0px 0px 0px 0px;
+}
+
+	body.app_storeroom #item_summary input[type=button] {
+		margin: 0px 0px 5px 0px;
+	}
+
+body.app_storeroom #sales_history_container {
+	overflow-x: auto;
+	margin: 0px 0px 20px 0px;
+}
+
+	body.app_storeroom #sales_history_container .gentable {
+		margin: 0px 0px 0px 0px;
+	}
+
+	body.app_storeroom #sales_history_container td, body.app_storeroom #sales_history_container th {
+		text-align: center;
+		width: 50px;
+	}
+
+body.app_storeroom #image_container img {
+	width: 100%;
+}
+
+body.app_storeroom #loginform {
+	position: relative;
+	width: 405px;
+	height: 300px;
+	box-sizing: border-box;
+	margin: 20px auto 20px auto;
+	padding: 0px 0px 0px 0px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	border-radius: 10px;
+	background-color: #e7e7e7;
+}
+
+	body.app_storeroom #loginform h3 {
+		text-align: center;
+		padding: 30px 0px;
+		font-size: 2em;
+	}
+
+	body.app_storeroom #loginform label {
+		float: left;
+		text-align: right;
+		margin: 0px 10px 0px 35px;
+		width: 150px;
+		line-height: 22px;
+	}
+
+	body.app_storeroom #loginform #netid_group {
+		margin: 0px 0px 20px 0px;
+	}
+
+	body.app_storeroom #loginform #login_button {
+		background-color: #909090;
+		height: 100px;
+		width: 100%;
+		padding: 40px;
+		position: absolute;
+		bottom: 0px;
+		text-align: center;
+		border-bottom-left-radius: 10px;
+		border-bottom-right-radius: 10px;
+		box-sizing: border-box;
+	}
+
+body.app_storeroom #dashboard {
+	max-width: 930px;
+	margin: 0px auto;
+}
+
+	body.app_storeroom #dashboard ul {
+		text-align: center;
+	}
+
+		body.app_storeroom #dashboard ul li {
+			display: inline-block;
+		}
+
+			body.app_storeroom #dashboard ul li a {
+				display: inline-block;
+				height: 110px;
+				width: 270px;
+				padding: 20px;
+				margin: 10px;
+				border: 1px solid #808080;
+				border-radius: 10px;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+				font-size: 24px;
+				background-color: #a0a0a0;
+				color: #ffffff;
+				line-height: 30px;
+			}
+
+				body.app_storeroom #dashboard ul li a span {
+					display: inline-block;
+					text-align: center;
+					font-size: 12px;
+					font-style: italic;
+					color: #000;
+				}
+
+				body.app_storeroom #dashboard ul li a:hover {
+					background-color: #909090;
+					color: #ffffff;
+				}
+
+body.app_storeroom .pos_status_bar {
+	padding: 10px 10px 10px 10px;
+	margin: 10px 0px 20px 0px;
+	border: 1px solid #a0a0a0;
+	background-color: #d0d0d0;
+	box-sizing: border-box;
+}
+
+	body.app_storeroom .pos_status_bar h3 {
+		float: left;
+		padding: 10px;
+		margin: 0px;
+		font-size: 1.5em;
+	}
+
+	body.app_storeroom .pos_status_bar ul.steps {
+		list-style-type: none;
+		margin: 0px;
+		padding: 0px;
+		display: inline-block;
+		font-size: 1.5em;
+	}
+
+		body.app_storeroom .pos_status_bar ul.steps li {
+			float: left;
+			padding: 10px;
+			border-left: 1px solid #a0a0a0;
+		}
+
+			body.app_storeroom .pos_status_bar ul.steps li.completed {
+				color: #909090;
+			}
+
+			body.app_storeroom .pos_status_bar ul.steps li.step {
+				color: #008000;
+			}
+
+body.app_storeroom table .stock_num {
+	width: 100px;
+}
+
+body.app_storeroom table .number {
+	width: 75px;
+	text-align: right;
+}
+
+body.app_storeroom table .date {
+	width: 165px;
+	text-align: right;
+}
+
+body.app_storeroom table .status {
+	width: 100px;
+	text-align: center;
+}
+
+body.app_storeroom table .action {
+	width: 200px;
+}
+
+body.app_storeroom table .return {
+	width: 200px;
+}
+
+/* studyabroadcourses */
+body.app_studyabroadcourses * {
+	box-sizing: border-box;
+}
+
+body.app_studyabroadcourses tr.rowodd {
+    background-color: #FFFFFF;
+}
+body.app_studyabroadcourses tr.roweven {
+    background-color: #F2F2F2;
+}
+body.app_studyabroadcourses .sortcol {
+    background-position: right center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    padding-right: 50px;
+}
+body.app_studyabroadcourses .sortasc {
+    background-color: #DDFFAC;
+    background-image: url("/common/icons/fugue/arrow-090-medium.png");
+}
+body.app_studyabroadcourses .sortdesc {
+    background-color: #B9DDFF;
+    background-image: url("/common/icons/fugue/arrow-270-medium.png");
+}
+body.app_studyabroadcourses .nosort {
+    cursor: default;
+}
+body.app_studyabroadcourses .fldlabel { width:250px; float:left; }
+body.app_studyabroadcourses .fldValue {width:150px; float:left; padding-right: 10px;}
+
+
+/* submit */
+body.app_submit * {
+	box-sizing: border-box;
+}
+
+body.app_submit #submit_nav_menu h5 {
+	position: fixed;
+	top: -500px;
+}
+
+body.app_submit #submit_nav_menu ul {
+	list-style-type: none;
+	display: inline-block;
+	width: 100%;
+	margin: 0px 0px 10px 0px;
+	padding: 0px;
+}
+
+	body.app_submit #submit_nav_menu ul li {
+		margin: 0px 0px 0px 0px;
+		display: inline;
+	}
+
+		body.app_submit #submit_nav_menu ul li.selected {
+			font-weight: bold;
+		}
+
+		body.app_submit #submit_nav_menu ul li:after {
+			content: " -> ";
+		}
+
+		body.app_submit #submit_nav_menu ul li:last-child:after {
+			content: "";
+		}
+
+/* ugradrecs*/
+
+body.app_ugradrecs #student_info .column1 {
+	width: 250px;
+}
+
+body.app_ugradrecs #student_info .column2 {
+	width: 300px;
+}
+
+body.app_ugradrecs #student_info .column3 {
+	width: 250px;
+}
+
+body.app_ugradrecs #student_info .column4 {
+	width: 350px;
+}
+
+body.app_ugradrecs #MB_frame div.item {
+	display: inline-block;
+	max-height: 90vh;
+	width: 640px;
+	overflow-y: auto;
+} 
+
+body.app_ugradrecs #MB_frame div.item .name,
+body.app_ugradrecs #MB_frame div.item .date ,
+body.app_ugradrecs #MB_frame div.item .petition_type, 
+body.app_ugradrecs #MB_frame div.item .petition_text,
+body.app_ugradrecs #MB_frame div.item .advisor_review, 
+body.app_ugradrecs #MB_frame div.item .dept_review, 
+body.app_ugradrecs #MB_frame div.item form {
+	margin: 0px 0px 10px 0px;
+	width: 98%;
+	float: left;
+}
+
+body.app_ugradrecs #MB_frame div.item .name { width: 395px; }
+body.app_ugradrecs #MB_frame div.item .date { width: 170px; }
+
+
+
+
+@media print {
+	body.app_storeroom .menu,
+	body.app_storeroom #toolbox,
+	body.app_storeroom #portal_app_info,
+	body.app_storeroom #frm_set_page {
+		display: none !important;
+	}
+
+	body.app_storeroom .module h2 a {
+		display: none;
+	}
+}
