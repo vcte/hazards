@@ -1,6 +1,6 @@
 <style type="text/css">
 
-    #dial-0 .needle path {
+    #dial .needle path {
       fill: beige;
     }
           
@@ -18,14 +18,6 @@
       font-size: 12px;
       fill: white; 
     }
-
-    #dial-1 text.label {
-      font-size: 16px;      
-    } 
-
-    #dial-2 text.label {
-      font-size: 14px;      
-    } 
 
 </style>
 
@@ -67,7 +59,7 @@
           .attr('id', 'dial-0')
           .attr('transform', 'translate(' + (x - r + dx) + ',' + (y - r + dy) + ')');
 
-      dials.each(function(d, i) { d3.select(this).data([<?php echo $perc_hazards_mitigated; ?>]).call(charts[i]); });
+      dials.each(function(d, i) { d3.select(this).data([<?php echo $dial_perc; ?>]).call(charts[i]); });
 
 </script>
 

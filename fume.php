@@ -5,7 +5,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 		<meta name="keywords" content="" />
 
-		<link rel="SHORTCUT ICON" href="/favicon.ico" />
+		<link rel="SHORTCUT ICON" href="/~fsdatabase/favicon.ico" />
 		<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700" />
 		<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans:400,700,400italic" />
 		<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Oswald:400,700,300" />
@@ -189,17 +189,6 @@ echo '<input type="text" id="txtSearch" name="txtSearch" maxlength="50" size="25
 </tr>
 <?php
 // helper functions
-function anything_in_fh_matches_search($fh, $search_restriction) {
-   $fh_col_names = array("hood_id", "building_name", "room", "location_description", "department", "face_velocity", "fh_status", "item_type", "path");
-   foreach ($fh_col_names as $col_name) {
-      if (preg_match('/' . $search_restriction . '/i', $fh[$col_name])) {
-         return True;
-      }
-   }
-   
-   return False;
-}
-
 function rel_query($params) {
    return '"/~fsdatabase/fume.php?' . http_build_query($params) . '"';
 }
@@ -230,6 +219,14 @@ if ($conn) {
 			array_push($filter_list, 'date_last_surveyed <= "' . rearrange_gui_date($selected_end) . '" ');
 		}
 		
+		if ($search_restriction != NULL) {
+            $search_filters = array();
+            foreach (array("hood_id", "building_name", "room", "location_description", "department", "face_velocity", "fh_status", "item_type", "path") as $col_name) {
+                array_push($search_filters, $col_name . ' LIKE "%' . $search_restriction . '%"');
+            }
+            array_push($filter_list, '(' . join(' || ', $search_filters) . ')');
+        }
+		
 		// calculate total number of entries
 		$filter = count($filter_list) > 0 ? " WHERE " . join(" && ", $filter_list) : "";
 		$query_tot = "SELECT COUNT(*) FROM fume_hood " . $filter;
@@ -259,10 +256,6 @@ if ($conn) {
 		$stmt->execute();
 		$fume_hoods = $stmt->fetchAll();
 		foreach ($fume_hoods as $fh_row) {
-			if (!anything_in_fh_matches_search($fh_row, $search_restriction)) {
-			   continue;
-			}
-			
 			echo "<tr>";
 			echo '<td class="left">' . $fh_row["hood_id"] . '</td>';
 			echo '<td class="left"><a href=' . rel_query(with_param($url_params, "building", $fh_row["building_name"])) .

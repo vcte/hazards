@@ -28,19 +28,21 @@ var svg = d3.select("#bar-chart"),
     height = +svg.attr("height") - margin.top - margin.bottom,
     g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var divTooltip = d3.select("body").append("div").attr("class", "toolTip");
+   var divTooltip = d3.select("body").append("div").attr("class", "toolTip");
 
-var x0 = d3.scaleBand()
-    .rangeRound([0, width - 180])
-    .paddingInner(0.1);
+   var legend_size = 180;
+   var x0 = d3.scaleBand()
+     .rangeRound([0, width - legend_size])
+     .paddingInner(0.1);
 
-var x1 = d3.scaleBand()
-    .padding(0.05);
+   var x1 = d3.scaleBand()
+     .padding(0.05);
 
-var y = d3.scaleLinear()
-    .rangeRound([height, 0]);
+   var y = d3.scaleLinear()
+     .rangeRound([height, 0]);
   
-  data = [];
+   data = [];
+
 <?php
   // print out javascript declarations for issue data
   foreach ($issues_by_dept as $row) {
@@ -58,36 +60,14 @@ var y = d3.scaleLinear()
      }
   }
   
-  // print out javascript array literal for all issues, sorted by frequency
-  $all_issues = get_top_issues($conn);
-  $key_str = '  var keys = [';
-  foreach ($all_issues as $row) {
-     $issue = $row[0];
-     $key_str .= '"' . $issue . '", ';
-  }
-  $key_str .= '];';
-  echo $key_str;
-  echo PHP_EOL;
-  
-  // print out colors for all issues
-  // use highly saturated colors for most frequent issues
-  $col_str = '"#ffd700", "#8b0000", "#808080", "#ff8c00", "#00008b", "#006400", "#fa8072", "#8b4513", "#9400d3", ';
-  
-  // use lighter, less saturated colors for less frequent issues
-  $col_str .= '"#d3d3d3", "#afeeee", "#eee8aa", "#da70d6", "#deb887", "#90ee90"';
-  
-  // use black for remaining issues
-  for ($i = 0; $i < count($all_issues) - 9 - 6; $i++) {
-     $col_str .= ', "#000000"';
-  }
-  echo '  var cols = [' . $col_str . '];' . PHP_EOL;
-  echo '  var z = d3.scaleOrdinal().domain(keys).range(cols);' . PHP_EOL;
+  echo_keys_and_colors($conn);
 ?>
 
   x0.domain(data.map(function(d) { return d.Dept; }));
   x1.domain(keys).rangeRound([0, x0.bandwidth()]);
   y.domain([0, d3.max(data, function(d) { return d3.max(keys, function(key) { return d[key]; }); })]).nice();
 
+  // draw bars
   g.append("g")
     .selectAll("g")
     .data(data)
@@ -102,6 +82,8 @@ var y = d3.scaleLinear()
       .attr("width", x1.bandwidth())
       .attr("height", function(d) { return height - y(d.value); })
       .attr("fill", function(d) { return z(d.key); })
+      
+    // display tooltip whenever user hovers over bar
     .on("mousemove", function(d){
       divTooltip.style("left", d3.event.pageX+10+"px");
       divTooltip.style("top", d3.event.pageY-25+"px");
@@ -112,8 +94,13 @@ var y = d3.scaleLinear()
     .on("mouseout", function(d){
       divTooltip.style("display", "none");
     })
-    .on("click", function(d) {// TODO
-      window.open("/~fsdatabase/lab.php?observ_code=" + decodeURI(d.key.replace(/ /g, '+')) + "&department=" + (d.dept), "_blank");
+    
+    // open new window for zoomed-in view of hazard data whenever user clicks on bar
+    .on("click", function(d) {
+      <?php
+      $url = '"/~fsdatabase/' . $type_url_param . '?observ_code=" + decodeURI(d.key.replace(/ /g, "+")) + "&department=" + (d.dept) + "' . $date_url_params . '"';
+      echo 'window.open(' . $url . ', "_blank");';
+      ?>
     });
 
   /*g.append("text")
@@ -123,11 +110,19 @@ var y = d3.scaleLinear()
       .style("font-weight", "bold")
       .text("Top 3 issues for each department");*/
 
+  // draw x axis
   g.append("g")
       .attr("class", "axis")
       .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(x0));
+      .call(d3.axisBottom(x0))
+    .append("text")
+      .attr("x", (width - legend_size) / 2)
+      .attr("dy", 30)
+      .attr("fill", "#000")
+      .attr("font-weight", "bold")
+      .text("Department");
 
+  // draw y axis
   g.append("g")
       .attr("class", "axis")
       .call(d3.axisLeft(y).ticks(null, "s"))
@@ -140,6 +135,7 @@ var y = d3.scaleLinear()
       .attr("text-anchor", "start")
       .text("Number of hazards");
 
+  // draw legend on right, indicates color associated with each hazard
   var legend = g.append("g")
       .attr("font-family", "sans-serif")
       .attr("font-size", 10)

@@ -5,7 +5,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 		<meta name="keywords" content="" />
 
-		<link rel="SHORTCUT ICON" href="/favicon.ico" />
+		<link rel="SHORTCUT ICON" href="/~fsdatabase/favicon.ico" />
 		<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700" />
 		<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans:400,700,400italic" />
 		<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Oswald:400,700,300" />

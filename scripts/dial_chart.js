@@ -83,6 +83,15 @@ NBXDialChart = function() {
               .attr('x2', function(d) { return Math.cos( (-90 + a(d)) / 180 * Math.PI) * (r * scale[2]); })
               .attr('y2', function(d) { return Math.sin( (-90 + a(d)) / 180 * Math.PI) * (r * scale[2]); });
         }
+        
+        // display percentage as text
+        /*g.append('svg:text')
+                .attr('x', 0)
+                .attr('y', r * 0.7)
+                .attr('text-anchor', 'middle')
+                .text(function(d) { return d.toFixed(1) + "%"; })
+                .style('font-size', '18px')
+                .style('fill', '#fff');*/
 
         var rdial3 = r * dial[3];        
         g.append('svg:path')

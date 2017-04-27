@@ -1,5 +1,9 @@
 <?php
 function db_connect() {
+    if (!in_array(strtolower($_SERVER['REMOTE_USER']), array("vge2@illinois.edu", "jorawiec@illinois.edu"))) {
+        return NULL;
+    }
+    
 	try {
 		$conn = new PDO("mysql:host=fsdatabase.web.engr.illinois.edu;dbname=fsdataba_fsdatabase;charset=latin1", "username", "password");
 		$conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
@@ -23,19 +27,43 @@ function exec_query($conn, $query) {
 	return NULL;
 }
 
+function get_sql_hazard_filter($dept = NULL, $date_start = NULL, $date_end = NULL, $type_restriction = NULL, $mitigated = NULL) {
+    $filters = array();
+    if ($dept != NULL) {
+        $filters[] = "dept = '" . $dept . "'";
+    }
+    if ($date_start != NULL) {
+        $filters[] = "date >= '" . $date_start . "'";
+    }
+    if ($date_end != NULL) {
+        $filters[] = "date <= '" . $date_end . "'";
+    }
+    if ($type_restriction != NULL) {
+        $filters[] = "audit_type = '" . $type_restriction . "'";
+    }
+    if ($mitigated != NULL) {
+        $filters[] = "mitigated = " . $mitigated;
+    }
+    $filter_str = join(" AND ", $filters);
+    return " WHERE " . ($filter_str != "" ? $filter_str : "1") . " ";
+}
+
 // get percentage of mitigated hazards, either for a department or college-wide
-function get_percent_mitigated_hazards($conn, $dept = NULL) {
-	$query_tot = "SELECT COUNT(*) FROM hazard WHERE audit_type = 'Lab'" . ($dept != NULL ? " AND dept = '" . $dept . "'" : "");
-	$query_mit = "SELECT COUNT(*) FROM hazard WHERE audit_type = 'Lab' AND mitigated = 1" . ($dept != NULL ? " AND dept = '" . $dept . "'" : "");
+function get_percent_mitigated_hazards($conn, $dept = NULL, $date_start = NULL, $date_end = NULL, $type_restriction = NULL) {
+    $filter_tot = get_sql_hazard_filter($dept, $date_start, $date_end, $type_restriction);
+    $filter_mit = get_sql_hazard_filter($dept, $date_start, $date_end, $type_restriction, 1);
+	$query_tot = "SELECT COUNT(*) FROM hazard" . $filter_tot;
+	$query_mit = "SELECT COUNT(*) FROM hazard" . $filter_mit;
 	$total = exec_query($conn, $query_tot)[0][0];
 	$mitig = exec_query($conn, $query_mit)[0][0];
 	return $mitig / $total * 100;
 }
 
 // find the PIs with the most number of lab hazards, top 10 are returned
-function get_pi_most_lab_hazards($conn, $dept, $limit = 10) {
+function get_pi_most_lab_hazards($conn, $dept, $limit = 10, $date_start = NULL, $date_end = NULL, $type_restriction = NULL) {
+    $filter = get_sql_hazard_filter($dept, $date_start, $date_end, $type_restriction);
 	$query_pi = "SELECT pi_name, COUNT(*) as num_hazards " .
-		    "FROM hazard WHERE audit_type = 'Lab' AND dept = '" . $dept . "' AND pi_name <> 'department' " .
+		    "FROM hazard" . $filter . " AND pi_name <> 'department' " .
 		    "GROUP BY pi_name " .
 		    "ORDER BY num_hazards DESC " .
 		    "LIMIT " . $limit;
@@ -43,20 +71,22 @@ function get_pi_most_lab_hazards($conn, $dept, $limit = 10) {
 }
 
 // calculate the average number of days from date of report issued to date mitigated, either for a department or college-wide
-function get_avg_days_to_mitigation($conn, $dept = NULL) {
+function get_avg_days_to_mitigation($conn, $dept = NULL, $date_start = NULL, $date_end = NULL, $type_restriction = NULL) {
+    $filter = get_sql_hazard_filter($dept, $date_start, $date_end, $type_restriction);
 	$query_days = "SELECT AVG(t.days) " .
 		      "FROM (SELECT DATEDIFF(date_mitigated, date) as days " .
 		            "FROM hazard " .
-		            "WHERE date_mitigated IS NOT NULL AND date IS NOT NULL " . ($dept != NULL ? "AND dept = '" . $dept . "' " : "") .
+		            $filter . " AND date_mitigated IS NOT NULL AND date IS NOT NULL " .
 		            "LIMIT 100) as t";
 	return exec_query($conn, $query_days)[0][0];
 }
 
 // get top n issues, either for a department or college-wide
-function get_top_issues($conn, $dept = NULL, $num = NULL) {
+function get_top_issues($conn, $dept = NULL, $num = NULL, $date_start = NULL, $date_end = NULL, $type_restriction = NULL) {
+    $filter = get_sql_hazard_filter($dept, $date_start, $date_end, $type_restriction);
 	$query_issues = "SELECT observ_code, COUNT(*) " .
 			"FROM hazard " .
-			($dept != NULL ? "WHERE dept='" . $dept . "' " : "") .
+			$filter . " " . 
 			"GROUP BY observ_code " .
 			"ORDER BY COUNT(*) DESC " .
 			($num != NULL ? "LIMIT " . $num : "");
@@ -164,4 +194,26 @@ function get_laser_system($conn, $laser_report_id) {
 	$query_sys = "SELECT * FROM laser_system WHERE laser_report_id = " . $laser_report_id;
 	return exec_query($conn, $query_sys);
 }
+
+// get the fiscal year that a given date falls under
+function get_corresponding_fiscal_year($date) {
+    $year = $date->format('Y');
+    if ($date <= DateTime::createFromFormat('Y-m-d', $year . '-6-30')) {
+        return $year;
+    } else {
+        return $year + 1;
+    }
+}
+
+// get range of years encompassing all hazard dates
+function get_all_hazard_fiscal_years($conn) {
+    $query_date = "SELECT MIN(date), MAX(date) FROM hazard";
+    $dates = exec_query($conn, $query_date);
+    $min_date = DateTime::createFromFormat('Y-m-d', $dates[0][0]);
+    $max_date = DateTime::createFromFormat('Y-m-d', $dates[0][1]);
+    $min_fiscal_year = get_corresponding_fiscal_year($min_date);
+    $max_fiscal_year = get_corresponding_fiscal_year($max_date);
+    return range($min_fiscal_year, $max_fiscal_year);
+}
+
 ?>

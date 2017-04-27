@@ -267,7 +267,8 @@ echo '<input type="text" id="txtSearch" name="txtSearch" maxlength="50" size="25
 <?php
 // helper functions
 function rel_query($params) {
-   return '"/~fsdatabase/lab.php?' . http_build_query($params) . '"';
+   global $selected_audit_type;
+   return '"/~fsdatabase/' . ($selected_audit_type == 'Lab' ? 'lab.php' : 'facility.php') . '?' . http_build_query($params) . '"';
 }
 
 $offset = isset($_GET['offset']) ? $_GET['offset'] : 0;
@@ -369,17 +370,26 @@ if ($conn) {
               '>' . $hazard_row["hazard_rank"] . '</a></td>';
          echo '<td class="left"><a href=' . rel_query(with_param($url_params, "party", $hazard_row["responsible_party"])) . 
               '>' . $hazard_row["responsible_party"] . '</td>';
+              
+         // temporary icons
+        if ($hazard_row["mitigated"]) {
+             echo '<td class="left"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>';
+         } else {
+             echo '<td class="left"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>';
+         }
+         echo '<td class="left">' . rearrange_sql_date($hazard_row["date_mitigated"]) . '</td>';         
+         
          // TODO - real time updates
-         echo '<td class="left">' . /*<input type="checkbox" name="is_mitigated_' . $hazard_row["hazard_id"] . 
-              '" value="yes"' . ($hazard_row["mitigated"] ? ' checked=true' : '') . '>*/ '</td>';
+         //echo '<td class="left">' . /*<input type="checkbox" name="is_mitigated_' . $hazard_row["hazard_id"] . 
+         //     '" value="yes"' . ($hazard_row["mitigated"] ? ' checked=true' : '') . '>*/ '</td>';
          //echo '<div class="input-group date" data-provide="datepicker">' .
             //'<input type="text" class="form-control">' +
                //'<div class="input-group-addon">' +
                   //'<span class="glyphicon glyphicon-th"></span>' +
                //'</div>' +
             //'</div>'
-         echo '<td class="left input-group date"></td>';/*<input type="text" class="dp form-control" style="display: block !important;" ';
-         echo 'value="' . rearrange_date($hazard_row["date_mitigated"], "y-m-d", "m/d/y") . '">*/
+         //echo '<td class="left input-group date"></td>'; /*<input type="text" class="dp form-control" style="display: block !important;" ';
+         //echo 'value="' . rearrange_date($hazard_row["date_mitigated"], "y-m-d", "m/d/y") . '">*/
          echo "</tr>";
       }
    } catch (PDOException $e) {
@@ -413,7 +423,7 @@ if ($hazards) {
 echo "</div>";
 ?>
 <script type="text/javascript">
-    TableKit.Sortable.detectors = $w('date date-us time currency datasize number casesensitivetext text');
+    TableKit.Sortable.detectors = $w('date date-us time datasize number casesensitivetext text');
 
     TableKit.Sortable.addSortType(
 	    new TableKit.Sortable.Type('number', {

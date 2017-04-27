@@ -15,8 +15,9 @@
 		<link rel="stylesheet" type="text/css" href="style/bootstrap.min.css" />
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		<script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
-    		<script type="text/javascript" src="scripts/dial_chart.js"></script>
-    		<script type="text/javascript" src="scripts/bootstrap.min.js"></script>
+    	<script type="text/javascript" src="scripts/dial_chart.js"></script>
+    	<script type="text/javascript" src="scripts/gauge.js"></script>
+    	<script type="text/javascript" src="scripts/bootstrap.min.js"></script>
     		
 	</head>
 
@@ -55,7 +56,67 @@ $conn = db_connect();
 
 $role = "safety_manager_or_dean";
 $dept = NULL;
+?>
 
+<form method="get">
+
+<!-- Fiscal year drop down menu -->
+<div class="fleft">
+<label for="year">Select Fiscal Year</label><br />
+<select id="year" name="year" onchange="this.form.submit();" autocomplete="off" style="min-width:100px">
+<?php
+$selected_year = "";
+$year_param = isset($_GET['year']) ? $_GET['year'] : '';
+echo '<option value=""' . ($year_param == '' ? ' selected' : '') . '>All</OPTION>';
+if ($conn) {
+	$years = get_all_hazard_fiscal_years($conn);
+	foreach ($years as $year) {
+		echo '<option value="' . $year . '"';
+		if ($year_param == $year) {
+			echo " selected";
+			$selected_year = $year_param;
+		}
+		echo ">" . $year . "</option>";
+	}
+}
+
+if ($selected_year != "") {
+    $date_start = ($selected_year - 1) . '-7-01';
+    $date_end   = ($selected_year)     . '-6-30';
+} else {
+    $date_start = NULL;
+    $date_end   = NULL;
+}
+?>
+</select>
+</div> <!-- End of fiscal year menu -->
+
+<!-- Audit type drop down menu -->
+<div class="fleft">
+<label for="type">Select Audit type</label><br />
+<select id="type" name="type" onchange="this.form.submit();" autocomplete="off" style="min-width:100px">
+<?php
+$selected_type = "";
+$type_param = isset($_GET['type']) ? $_GET['type'] : 'Lab';
+if ($conn) {
+    $types = array("Lab", "OSHA");
+	foreach ($types as $type) {
+		echo '<option value="' . $type . '"';
+		if ($type_param == $type) {
+			echo " selected";
+			$selected_type = $type_param;
+		}
+		echo ">" . $type . "</option>";
+	}
+}
+$type_restriction = $selected_type != "" ? $selected_type : NULL;
+?>
+</select>
+</div> <!-- End of Audit type menu -->
+
+<br><br><br><br>
+
+<?php
 if ($role == "lab_pi") {
 	include("pi_dashboard.php");
 } else if ($role == "facility_manager") {
@@ -64,6 +125,8 @@ if ($role == "lab_pi") {
 	include("dean_dashboard.php");
 }
 ?>
+
+</form>
 
 </div> <!-- end of module_content -->
 </div> <!-- end of clearfix -->

@@ -23,16 +23,18 @@
          </div>
       </div>
       <div class="col-lg-4">
-         <?php
-         if ($days_to_mitigation != NULL) {
-         	echo round($days_to_mitigation, 1);
-         	echo " days.";
-         } else {
-         	echo "No mitigation dates have been reported!";
-         }
-         ?>
+         <div id="delay-gauge"> <?php if ($days_to_mitigation == NULL) echo "No mitigation dates have been reported!"; ?> </div>
       </div>
    </div>
 </div>	<!-- close container -->
 
 <?php include("dial.php"); ?>
+
+<script>
+<?php
+if ($days_to_mitigation != NULL) {
+ echo 'var gauge = new Gauge("delay-gauge");';
+ echo 'gauge.render(' . round($days_to_mitigation) . ');';
+}
+?>
+</script>
