@@ -52,7 +52,7 @@
 <div class="module">
 <div class="module_top"><span></span></div>
 <h2><a href="/" style="float: right;">Return</a>
-<div id="portal_app_info" style="float: right; margin-right: 10px;"></div>Directory - Laser Hazards</h2>
+<div id="portal_app_info" style="float: right; margin-right: 10px;"></div>Laser Hazards</h2>
 
 <div class="clearfix" style="width: 100%;">
 <div class="module_content">
@@ -72,40 +72,14 @@
 <?php
 require 'database.php';
 require 'helper.php';
+require 'dropdown.php';
 
-$conn = db_connect();
+$conn = db_connect($role);
 ?>
 <div class="clearfix">
 
 <!-- Supervisor drop down menu -->
-<div class="fleft">
-<label for="supervisor">Supervisor</label><br />
-<select id="supervisor" name="supervisor" onchange="this.form.submit();" autocomplete="off">
-<?php
-$selected_sup = "";
-$sup_param = isset($_GET['supervisor']) ? $_GET['supervisor'] : '';
-echo '<option value=""' . ($sup_param == '' ? ' selected' : '') . '>All</OPTION>';
-if ($conn) {
-	try {
-		$stmt = $conn->prepare("SELECT DISTINCT(supervisor) FROM laser_header ORDER BY supervisor");
-		$stmt->execute();
-		$sups = $stmt->fetchAll();
-		foreach ($sups as $index => $sup) {
-			echo '<option value="' . $sup["supervisor"] . '"';
-			if ($sup_param == $sup["supervisor"]) {
-				echo " selected";
-				$selected_sup = $sup_param;
-			}
-			echo ">" . $sup["supervisor"] . "</option>";
-		}
-	} catch (PDOException $e) {
-		echo "<div>Could not access laser_header table: " . $e->getMessage() . "</div>";
-		$conn = NULL;
-	}
-}
-?>
-</select>
-</div> <!-- End of supervisor menu -->
+<?php $selected_sups = echo_supervisor_menu($conn, "laser_header", $role, $dept, $user_netid); ?>
 
 <!-- Lab building drop down menu -->
 <div class="fleft">
@@ -174,10 +148,7 @@ echo '<input type="text" id="txtSearch" name="txtSearch" maxlength="50" value="'
 
 <?php
 // determine which restrictions to apply to query
-$sup_restriction = NULL;
-if ($selected_sup != '') {
-	$sup_restriction = $selected_sup;
-}
+$sup_restriction = $selected_sups;
 
 $bldg_restriction = NULL;
 if ($selected_bldg != '') {
@@ -202,6 +173,12 @@ if (isset($_GET['txtSearch']) && $_GET['txtSearch'] != '') {
 $headers = get_laser_headers($conn, $sup_restriction, $start_restriction, $end_restriction);
 
 // helper functions
+/**
+ * Return html for table entries containing checkboxes 
+ * @param $admin associative array
+ * @param string $key key
+ * @retval string html for table data element. 
+ */
 function checkboxes($admin, $key) {
    $opts = array('S', 'U', 'NA', 'NC');
    $str = '';

@@ -51,7 +51,7 @@
 <div class="module">
 <div class="module_top"><span></span></div>
 <h2><a href="/" style="float: right;">Return</a>
-<div id="portal_app_info" style="float: right; margin-right: 10px;"></div>Directory - Facility Hazards</h2>
+<div id="portal_app_info" style="float: right; margin-right: 10px;"></div>Facility Hazards</h2>
 
 <div class="clearfix" style="width: 100%;">
 <div class="module_content">

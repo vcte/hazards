@@ -51,7 +51,7 @@
 <div class="module">
 <div class="module_top"><span></span></div>
 <h2><a href="/" style="float: right;">Return</a>
-<div id="portal_app_info" style="float: right; margin-right: 10px;"></div>Directory - Fume Hoods</h2>
+<div id="portal_app_info" style="float: right; margin-right: 10px;"></div>Fume Hoods</h2>
 
 <div class="clearfix" style="width: 100%;">
 <div class="module_content">
@@ -71,41 +71,14 @@
 <?php
 require 'database.php';
 require 'helper.php';
+require 'dropdown.php';
 
-$conn = db_connect();
+$conn = db_connect($role);
 ?>
 <div class="clearfix">
 
 <!-- Department drop down menu -->
-<div class="fleft">
-<label for="department">Select Department</label><br />
-<select id="department" name="department" onchange="this.form.submit();" autocomplete="off">
-<?php
-$selected_dept = "";
-$dept_param = isset($_GET['department']) ? $_GET['department'] : '';
-echo '<option value=""' . ($dept_param == '' ? ' selected' : '') . '>All</OPTION>';
-if ($conn) {
-	try {
-		$stmt = $conn->prepare("SELECT department_abbrev, department_fullname FROM department ORDER BY department_abbrev");
-		$stmt->execute();
-		$depts = $stmt->fetchAll();
-		foreach ($depts as $index => $dept) {
-			$abbrev = $dept["department_abbrev"];
-			echo '<option value="' . $abbrev . '"';
-			if ($dept_param == $abbrev) {
-				echo " selected";
-				$selected_dept = $dept_param;
-			}
-			echo ">" . str_replace("Engineering", "Engr.", $dept["department_fullname"]) . "</option>";
-		}
-	} catch (PDOException $e) {
-		echo "<div>Could not access departments table: " . $e->getMessage() . "</div>";
-		$conn = NULL;
-	}
-}
-?>
-</select>
-</div> <!-- End of dept menu -->
+<?php $selected_dept = echo_dept_menu($conn, $role, $dept); ?>
 
 <!-- Building drop down menu -->
 <div class="fleft">
@@ -203,19 +176,19 @@ $url_params = remove_empty($_GET);
 if ($conn) {
 	try {
 		$filter_list = array();
-		if ($selected_dept != '') {
+		if (!empty($selected_dept)) {
 			array_push($filter_list, 'department="' . $selected_dept . '" ');
 		}
 		
-		if ($selected_bldg != '') {
+		if (!empty($selected_bldg)) {
 			array_push($filter_list, 'building_name="' . $selected_bldg . '" ');
 		}
 		
-		if ($selected_start != '') {
+		if (!empty($selected_start)) {
 			array_push($filter_list, 'date_last_surveyed >= "' . rearrange_gui_date($selected_start) . '" ');
 		}
 		
-		if ($selected_end != '') {
+		if (!empty($selected_end)) {
 			array_push($filter_list, 'date_last_surveyed <= "' . rearrange_gui_date($selected_end) . '" ');
 		}
 		

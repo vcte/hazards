@@ -29,9 +29,9 @@
       // NOTE: changing x distorts the position of the numbers on perimeter of dial, so change dx to shift the dial
       var dx = 50;
       var dy = 0;
-      var x = 150,
-	  y = 200,
-	  r = 160,
+      var r = <?php echo isset($dial_radius) ? $dial_radius : 160 ?>,
+      x = r,
+	  y = r + 40,
 	  m = 100,
 	  ticks = 0,
 	  mark = 'line';

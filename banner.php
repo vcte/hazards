@@ -94,7 +94,7 @@
 							</ul>
 						</li>
 						
-						<?php echo '<li><p>Hello, ' . strtolower($_SERVER['REMOTE_USER']) . '!</p></li>' ?>
+						<?php echo '<li><p>Hello, ' . strtolower($_SERVER['REMOTE_USER']) . '!</p></li>'; ?>
 					</ul>
 				</div><!--close mainnav-->
 			</div><!--close header-->

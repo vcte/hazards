@@ -1,19 +1,6 @@
 <?php
 $perc_hazards_mitigated = get_percent_mitigated_hazards($conn, $dept, $date_start, $date_end, $type_restriction);
 $days_to_mitigation = get_avg_days_to_mitigation($conn, $dept, $date_start, $date_end, $type_restriction);
-
-$date_url_params = "";
-if ($date_start != NULL) {
-    $date_url_params .= "&date_start=" . urlencode(rearrange_sql_date($date_start));
-}
-if ($date_end != NULL) {
-    $date_url_params .= "&date_end=" . urlencode(rearrange_sql_date($date_end));
-}
-
-$type_url_param = "lab.php";
-if ($type_restriction == "OSHA") {
-    $type_url_param = "facility.php";
-}
 ?>
 
 <div class="container">
@@ -38,8 +25,8 @@ if ($type_restriction == "OSHA") {
             <table id="pi-table" class="table table-striped" style="display: none;"> 
                <tr><th>Department</th><th>PI name</th><th># lab hazards</th></tr>
                <?php
-               $dept_and_pi_with_most_hazards = array();
-               $depts = get_all_dept_abbrev($conn);
+               $dept_and_pis_with_most_hazards = array();
+               $depts = get_all_dept($conn);
                foreach ($depts as $row) {
                   $dept = $row[0];
                   $pis_most_hazards_per_dept = get_pi_most_lab_hazards($conn, $dept, 1, $date_start, $date_end, $type_restriction);
@@ -50,7 +37,8 @@ if ($type_restriction == "OSHA") {
                      echo '<td><a href="/~fsdatabase/' . $type_url_param . '?pi_name=' . urlencode($pi_name) . $date_url_params . '">' . $pi_name . '</a></td>';
                      echo '<td>' . $pis_most_hazards_per_dept[0][1] . '</td>';
                      echo '</tr>';
-                     $dept_and_pi_with_most_hazards[] = array($dept, $pi_name, $pis_most_hazards_per_dept[0][1]);
+                     
+                     $dept_and_pis_with_most_hazards[] = array(array($dept, $pi_name, $pis_most_hazards_per_dept[0][1]));
                   }
                }
                ?>
@@ -129,7 +117,7 @@ if ($type_restriction == "OSHA") {
                </tr>
                <?php
                $issues_by_dept = array();
-               $depts = get_all_dept_abbrev($conn);
+               $depts = get_all_dept($conn);
                foreach ($depts as $row) {
                   $dept = $row[0];
                   $issues = get_top_issues($conn, $dept, 3, $date_start, $date_end, $type_restriction);
@@ -158,6 +146,7 @@ if ($type_restriction == "OSHA") {
 
 <?php 
 $dial_perc = $perc_hazards_mitigated;
+$dial_radius = 160;
 include("dial.php");
 ?>
 

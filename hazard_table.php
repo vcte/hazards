@@ -1,44 +1,16 @@
 <?php
 require 'database.php';
 require 'helper.php';
+require 'dropdown.php';
 
-$conn = db_connect();
+$conn = db_connect($role);
 ?>
 
 <form method="get">
 <div class="clearfix">
 
 <!-- Department drop down menu -->
-<div class="fleft">
-<label for="department">Select Department</label><br />
-<select id="department" name="department" onchange="this.form.submit();" autocomplete="off">
-<?php
-$selected_dept = "";
-$dept_param = isset($_GET['department']) ? $_GET['department'] : '';
-echo '<option value=""' . ($dept_param == '' ? ' selected' : '') . '>All</OPTION>';
-if ($conn) {
-	try {
-		$stmt = $conn->prepare("SELECT department_abbrev, department_fullname FROM department ORDER BY department_abbrev");
-		$stmt->execute();
-		$depts = $stmt->fetchAll();
-		foreach ($depts as $index => $dept) {
-			$abbrev = $dept["department_abbrev"];
-			$dept_name = str_replace("Engineering", "Engr.", $dept["department_fullname"]);
-			echo '<option value="' . $abbrev . '"';
-			if ($dept_param == $abbrev) {
-				echo " selected";
-				$selected_dept = $dept_param;
-			}
-			echo ">" . $dept_name . "</option>";
-		}
-	} catch (PDOException $e) {
-		echo "<div>Could not access departments table: " . $e->getMessage() . "</div>";
-		$conn = NULL;
-	}
-}
-?>
-</select>
-</div> <!-- End of dept menu -->
+<?php $selected_dept = echo_dept_menu($conn, $role, $dept); ?>
 
 <!-- Building drop down menu -->
 <div class="fleft">
@@ -281,39 +253,42 @@ if ($conn) {
          array_push($filter_list, 'audit_type="' . $selected_audit_type . '"');
       }
       
-      if ($selected_dept != '') {
+      if ($role != "safety_manager_or_dean") {
+         array_push($filter_list, 'dept="' . $dept . '"');
+      } else if ($selected_dept != '') {
          array_push($filter_list, 'dept="' . $selected_dept . '"');
-      } 
+      }
       
-      if ($selected_bldg != '') {
+      if (!empty($selected_bldg)) {
          array_push($filter_list, 'building="' . $selected_bldg . '"');
       }
       
-      if ($selected_pi != '') {
+      if (!empty($selected_pi)) {
          array_push($filter_list, 'pi_name="' . $selected_pi . '"');
       }
       
-      if ($selected_observ != '') {
+      if (!empty($selected_observ)) {
          array_push($filter_list, 'observ_code="' . $selected_observ . '"');
       }
       
-      if ($selected_rank != '') {
+      // NOTE: there should NOT be a rank "0", or else empty will behave unexpectedly 
+      if (!empty($selected_rank)) {
          array_push($filter_list, '(hazard_rank="' . $selected_rank . '" OR hazard_rank LIKE "_' . $selected_rank . '")');
       }
       
-      if ($selected_start != '') {
+      if (!empty($selected_start)) {
          array_push($filter_list, 'date >= "' . rearrange_gui_date($selected_start) . '"');
       }
       
-      if ($selected_end != '') {
+      if (!empty($selected_end)) {
          array_push($filter_list, 'date <= "' . rearrange_gui_date($selected_end) . '"');
       }
       
-      if ($selected_party != '') {
+      if (!empty($selected_party)) {
          array_push($filter_list, 'responsible_party LIKE "%' . $selected_party . '%"');
       }
       
-      if ($selected_mitig != '') {
+      if (!empty($selected_mitig)) {
          array_push($filter_list, ($selected_mitig == "Yes" ? "mitigated = 1" : "(mitigated IS NULL OR mitigated = 0)"));
       }
       

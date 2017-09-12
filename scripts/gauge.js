@@ -8,7 +8,13 @@ function Gauge(placeholderName)
 		max: 365,
 		minorTicks: 5,
 		x: 120,
-		y: 30
+		y: 30,
+		margin: {
+		    top: 10,
+		    bottom: 30,
+		    right: 10,
+		    left: 10
+		}
 	};
 	
 	configuration.min_yellow = 30;
@@ -50,8 +56,8 @@ function Gauge(placeholderName)
 		this.body = d3.select("#" + this.placeholderName)
 							.append("svg:svg")
 							.attr("class", "gauge")
-							.attr("width", this.config.size)
-							.attr("height", this.config.size)
+							.attr("width", this.config.size + this.config.margin.left + this.config.margin.right)
+							.attr("height", this.config.size + this.config.margin.top + this.config.margin.bottom)
 							.attr('transform', 'translate(' + this.config.x + ', ' + this.config.y + ')');
 		
 		this.body.append("svg:circle")

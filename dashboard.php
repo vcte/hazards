@@ -28,11 +28,19 @@
 	?>
 	
 <div id="content">
+    
+<?php
+require 'database.php';
+require 'helper.php';
+
+$conn = db_connect($role);
+?>
 
 <div class="module">
 <div class="module_top"><span></span></div>
 <h2><a href="/" style="float: right;">Return</a>
-<div id="portal_app_info" style="float: right; margin-right: 10px;"></div>Dashboard</h2>
+<div id="portal_app_info" style="float: right; margin-right: 10px;"></div>
+<?php echo $role === "safety_manager_or_dean" ? "Dean Dashboard" : "Dashboard - " . $dept ?></h2>
 
 <div class="clearfix" style="width: 100%;">
 <div class="module_content">
@@ -48,15 +56,6 @@
 <li><a href="report.php">Print Report</a></li>
 </ul>
 </div> <!-- menu close -->
-<?php
-require 'database.php';
-require 'helper.php';
-
-$conn = db_connect();
-
-$role = "safety_manager_or_dean";
-$dept = NULL;
-?>
 
 <form method="get">
 
@@ -117,6 +116,19 @@ $type_restriction = $selected_type != "" ? $selected_type : NULL;
 <br><br><br><br>
 
 <?php
+$date_url_params = "";
+if ($date_start != NULL) {
+    $date_url_params .= "&date_start=" . urlencode(rearrange_sql_date($date_start));
+}
+if ($date_end != NULL) {
+    $date_url_params .= "&date_end=" . urlencode(rearrange_sql_date($date_end));
+}
+
+$type_url_param = "lab.php";
+if ($type_restriction == "OSHA") {
+    $type_url_param = "facility.php";
+}
+
 if ($role == "lab_pi") {
 	include("pi_dashboard.php");
 } else if ($role == "facility_manager") {

@@ -1,14 +1,30 @@
 <?php
-// return a 6 character code that uniquely identifies the string
+/** 
+ * Return a 6 character code that uniquely identifies the string.
+ * @param string $str arbitrary string, or object that can be converted to string
+ * @retval string 6 character md5 hash. 
+ */
 function hash6($str) {
 	return substr(hash("md5", $str), -6);
 }
 
-// change the format by which a date is represented
+/** 
+ * Change the format by which a date is represented.
+ * Format is a string in which year, month and day are matched to "y", "m" and "d" respectively. Ex: "m/d/y", "y-m-d". 
+ * @param string $date date in format $fmt1.
+ * @param string $fmt1 date format. 
+ * @param string $fmt2 date format. 
+ * @retval string date in format $fmt2, or $date if does not match $fmt1. 
+ */
 function rearrange_date($date, $fmt1, $fmt2) {
 	// convert current format to regex
 	$fmt1 = preg_quote($fmt1, "/");
-	$fmt1 = '/' . str_replace("m", "(?P<m>\d{1,2})", str_replace("y", "(?P<y>\d{1,4})", str_replace("d", "(?P<d>\d{1,2})", $fmt1))) . '/';
+	$fmt1 = str_replace("d", "(?P<d>\d{1,2})", $fmt1);
+	$fmt1 = str_replace("y", "(?P<y>\d{1,4})", $fmt1);
+	$fmt1 = str_replace("m", "(?P<m>\d{1,2})", $fmt1);
+	$fmt1 = '/' . $fmt1 . '/';
+	
+	// match date to format $fmt1
 	if (preg_match($fmt1, $date, $matches)) {
 		return str_replace("d", $matches["d"], str_replace("m", $matches["m"], str_replace("y", $matches["y"], $fmt2)));
 	} else {
@@ -16,7 +32,10 @@ function rearrange_date($date, $fmt1, $fmt2) {
 	}
 }
 
-// convert date format from mysql format to gui format
+/** Convert date format from mysql format to gui format.
+ * @param string $date in "y-m-d" format.
+ * @retval string date in "m/d/y" format, or "Unknown" if given date is NULL.
+ */
 function rearrange_sql_date($date) {
 	if ($date != NULL) {
 		return rearrange_date($date, "y-m-d", "m/d/y");
@@ -25,7 +44,10 @@ function rearrange_sql_date($date) {
 	}
 }
 
-// convert date format from gui format to mysql format
+/** Convert date format from gui format to mysql format.
+ * @param string $date in "m/d/y" format.
+ * @retval string date in "y-m-d" format, or NULL if given date is NULL;
+ */
 function rearrange_gui_date($date) {
 	if ($date != NULL) {
 		return rearrange_date($date, "m/d/y", "y-m-d");
@@ -34,7 +56,10 @@ function rearrange_gui_date($date) {
 	}
 }
 
-// format a list of labs
+/** Format a list of labs
+ * @param $labs 2D array, or list of  (lab room, lab building) pairs.
+ * @retval string comma-separated sequence of lab locations. 
+ */
 function formatted_labs($labs) {
 	$lab_strs = array();
 	foreach ($labs as $row) {
@@ -43,7 +68,11 @@ function formatted_labs($labs) {
 	return join(', ', $lab_strs);
 }
 
-// check if any labs are located in the query building
+/** Check if any labs are located in the query building.
+ * @param $labs 2D array, or list of  (lab room, lab building) pairs.
+ * @param string $bldg_restriction building name to match against, or NULL for all buildings.
+ * @retval boolean whether any labs in the list are in the building given by $bldg_restriction
+ */
 function any_building_matches_restriction($labs, $bldg_restriction) {
    if ($bldg_restriction != NULL) {
       foreach ($labs as $lab) {
@@ -56,14 +85,23 @@ function any_building_matches_restriction($labs, $bldg_restriction) {
    return True;
 }
 
-// replace parameter in the associative array
+/** Replace parameter in the associative array.
+ * @param $a associative array
+ * @param $k key
+ * @param $v new value
+ * $retun updated associative array
+ */
 function with_param($a, $k, $v) {
 	$a2 = $a;
 	$a2[$k] = $v;
 	return $a2;
 }
 
-// remove keys whose values is equal to empty string in associative array
+/** Remove keys whose value is equal to $token in associative array
+ * @param $a associative array
+ * @param string $token value to match against, equal to empty string by default
+ * @return updated associative array
+ */
 function remove_empty($a, $token = "") {
 	$a2 = $a;
 	foreach ($a as $k => $v) {
@@ -74,8 +112,11 @@ function remove_empty($a, $token = "") {
 	return $a2;
 }
 
-// print out all issues as js array named keys, and colors associated with each issue
-// returns total number of issues, list of issues, and list of colors
+/** Print out all issues as js array named keys, and colors associated with each issue. 
+ * Determines which color depicts which issue based on frequency and hard-coded mapping for common issues. 
+ * @param $conn database connection object. 
+ * @return tuple w/ total number of issues, list of issues, and list of colors
+ */
 function echo_keys_and_colors($conn) {
     // print out javascript array literal for all issues, sorted by frequency
     $all_issues = get_top_issues($conn);
